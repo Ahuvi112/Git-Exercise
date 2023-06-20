@@ -1,0 +1,24 @@
+{
+  "name": "new-folder",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000G\u0000i\u0000t\u0000-\u0000E\u0000x\u0000e\u0000r\u0000c\u0000i\u0000s\u0000e\u0000\r\u0000 \u0000",
+  "main": "app.js",
+  "type":"module",
+  "scripts": {
+    "dev":"nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahuvi112/Git-Exercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ahuvi112/Git-Exercise/issues"
+  },
+  "homepage": "https://github.com/Ahuvi112/Git-Exercise#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
