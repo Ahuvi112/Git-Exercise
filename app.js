@@ -6,7 +6,7 @@ const port=3000
 app.get('/',(req,res)=>{
     res.send("Hello World")
 })
-
+//npm run dev
 app.listen(port,()=>{
     console.log("well");
 })
