@@ -1,4 +1,4 @@
-// import userMoodel from "../Models/User.model.js";
+import {getUserById,get,update,deleteUser,User} from "../Models/User.model.js";
 
 const UsersController = {
 
