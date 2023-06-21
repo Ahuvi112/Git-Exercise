@@ -7,5 +7,6 @@ UserRouter.delete("/deleteUser",UsersController.deleteUser)
 UserRouter.post("/addUser", UsersController.addUser);
 UserRouter.get("/getUsers", UsersController.getUsers);
 UserRouter.put("/updateUser",UsersController.updateUser);
+UserRouter.get("/getUserById", UsersController.getById);
 
 export default UserRouter;
