@@ -1,4 +1,3 @@
-
 class User {
 
     constructor(id,name,phone,email){
@@ -7,20 +6,21 @@ class User {
         this.phone=phone;
         this.email=email;
     }
+
     getName(){
         return this.name;
     }
-   getId(){
-    return this.id;
-   }
-   getEmail(){
-    return this.email;
-   }
-   getPhone(){
-    return this.phone;
-   }
+    getId(){
+        return this.id;
+    }
+    getEmail(){
+        return this.email;
+    }
+    getPhone(){
+        return this.phone;
+    }
    setId(id){
-this.id=id;
+        this.id=id;
    }
    setName(name){
     this.name=name;
