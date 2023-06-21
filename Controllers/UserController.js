@@ -1,4 +1,5 @@
-const userModel = require('../Models/User.model.js');
+import userModel from '../Models/User.model.js';
+
 const UsersController = {
 
     getUsers: async (req, res) => {
@@ -23,10 +24,11 @@ const UsersController = {
     },
 
     addUser: async (req, res) => {
-        const { name, email, phone, dateBirth } = req.body;
+        const { name, email, phone, birthDate } = req.body;
         try {
-            const newUser = await userModel.create({ name, email, phone, dateBirth });
+            const newUser = await userModel.create(name, email, phone, birthDate);
             res.json(newUser);
+            console.log(req.body);
         }
         catch (e) {
             res.status(400).json({ message: e.message });

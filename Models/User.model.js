@@ -1,48 +1,38 @@
-const User = {
 
-    constructor(id, name, phone, email, biryhDate) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.biryhDate = biryhDate;
-    },
+let users = [
+    { id: '0', name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
+];
 
-    ValidEmail(email) {
-        const axios = require('axios');
-        axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=2e17dc1705204211a9f56d23286e45c9&email=${email}`)
-            .then(() => {
-                return true;
-            })
-            .catch(() => {
-                return false;
-            });
-    },
-
-    PhoneNumberValidation(PhoneNumber) {
-        const axios = require('axios');
-        axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=76ce3eacb8ff4fd79e87075ba8322cee&phone=+972https://phonevalidation.abstractapi.com/v1/?api_key=05700596a4cc481ba6db8a5c2316ce13&phone=+972${PhoneNumber}`)
-            .then(() => {
-                return true;
-            })
-            .catch(() => {
-                return false;
-            });
-
-    }
+function ValidEmail(email) {
+    const axios = require('axios');
+    axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=2e17dc1705204211a9f56d23286e45c9&email=${email}`)
+        .then(() => {
+            return true;
+        })
+        .catch(() => {
+            return false;
+        });
 }
 
-let users = [];
+function PhoneNumberValidation(PhoneNumber) {
+    const axios = require('axios');
+    axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=76ce3eacb8ff4fd79e87075ba8322cee&phone=+972https://phonevalidation.abstractapi.com/v1/?api_key=05700596a4cc481ba6db8a5c2316ce13&phone=+972${PhoneNumber}`)
+        .then(() => {
+            return true;
+        })
+        .catch(() => {
+            return false;
+        });
 
-
+}
 
 function get() {
     return users;
 }
 
-function create(user) {
-    const newUser = user;
-    users.push(newUser);
+function create(name, email, phone, birthDate) {
+    const id=users.length;
+    users.push({id,name,email,phone,birthDate});
 }
 
 function update(id, user) {
@@ -59,10 +49,11 @@ function getUserById(id) {
     return users[index];
 }
 
-module.exports = {
+const UserModel = {
     get,
     create,
     update,
     deleteUser,
     getUserById,
 };
+export default UserModel;
