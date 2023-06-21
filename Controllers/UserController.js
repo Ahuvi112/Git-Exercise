@@ -1,15 +1,15 @@
-import {Get} from '../Models/User.model.js'
+import {getUserById,get,update,deleteUser,User,create} from '../Models/User.model.js'
 const UsersController = {
 
     getUsers:  (req, res) => {
-        let users=Get();
+        let users=get();
         res.json(users);
     },
 
     getById: (req, res) => {
         try {
             const { id } = req.body;
-            let user =  UserModel.getById(id);
+            let user =  getUserById(id);
             res.json(user);
         }
         catch(e){
@@ -20,7 +20,7 @@ const UsersController = {
     addUser:  (req, res) => {
         const { name, email, phone } = req.body;
         try {
-            const newUser = UserModel.Add({ name, email, phone });
+            const newUser = create({ name, email, phone });
             res.json(newUser);
         }
         catch (e) {
@@ -31,7 +31,7 @@ const UsersController = {
     deleteUser: async (req, res) => {
         try {
             const id = req.body;
-            UserModel.delete(id);
+            deleteUser(id);
         }
         catch (e) {
             res.status(404).json({ message: e.message });
@@ -40,7 +40,7 @@ const UsersController = {
 
     updateUser: async (req, res) => { try {
         const { id, user } = req.body;
-        UserModel.Update(id, user);
+        update(id, user);
     }
     catch (e) {
         res.status(404).json({ message: e.message });

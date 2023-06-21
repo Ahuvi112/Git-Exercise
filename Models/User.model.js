@@ -28,7 +28,6 @@ function ValidEmail(email) {
         });
 }
 
-
 function PhoneNumberValidation(PhoneNumber) {
     const axios = require('axios');
     axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=76ce3eacb8ff4fd79e87075ba8322cee&phone=+972https://phonevalidation.abstractapi.com/v1/?api_key=05700596a4cc481ba6db8a5c2316ce13&phone=+972${PhoneNumber}`)
