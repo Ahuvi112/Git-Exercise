@@ -1,21 +1,18 @@
+const User = {
+    constructor(id,name,phone,email,biryhDate){
+        this.id=id;
+        this.name=name;
+        this.phone=phone;
+        this.email=email;
+        this.biryhDate=biryhDate;
+    },
 
-const user = {
-    id: {
-        type: Number,
-        require: true
-    },
-    name: {
-        type: String,
-        require: true
-    },
-    email: {
-        type: String,
-        require: true
-    },
-    phone: {
-        type: String,
-        require: true
-    }
+    // const ValidEmail=(email)=>{
+    //     //need to implement includes
+    //     if(!email.includes('@') || email.includes(' '))
+    //         return false;
+    //     return true;
+    // } 
 }
 
 let users = [];
@@ -30,7 +27,6 @@ function ValidEmail(email) {
             return false;
         });
 }
-
 
 function PhoneNumberValidation(PhoneNumber) {
     const axios = require('axios');
@@ -48,20 +44,30 @@ function get() {
     return users;
 }
 
-function Add(user) {
+function create(user) {
     const newUser = user;
     users.push(newUser);
 }
 
-function Update(id, user) {
+function update(id, user) {
     const index = users.findIndex(user => user.id == id);
     users[index] = user;
 }
 
-function Delete(id) {
+function deleteUser(id) {
     users = users.filter(user => user.id != id)
 }
 
+function getUserById(id){
+    const index = users.findIndex(user => user.id == id);
+    return users[index]; 
+}
 
-
-export default userMoodel;
+module.exports = {
+    get,
+    create,
+    update,
+    deleteUser,
+    getUserById,
+    User
+};
