@@ -21,7 +21,6 @@ const UsersController = {
 
     addUser: (req, res) => {
         const { name, email, phone } = req.body;
-
         try {
             const newUser = UserModel.Add({ name, email, phone });
             res.json(newUser);
