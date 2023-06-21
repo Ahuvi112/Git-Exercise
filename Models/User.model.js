@@ -54,6 +54,6 @@ const UserModel = {
     create,
     update,
     deleteUser,
-    getUserById,
+    getUserById
 };
 export default UserModel;
