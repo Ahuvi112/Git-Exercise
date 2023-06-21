@@ -1,4 +1,5 @@
-const User = {
+import bodyParser from 'body-parser';
+class User  {
 
     constructor(id, name, phone, email, biryhDate) {
         this.id = id;
@@ -6,7 +7,7 @@ const User = {
         this.phone = phone;
         this.email = email;
         this.biryhDate = biryhDate;
-    },
+    }
 
     ValidEmail(email) {
         const axios = require('axios');
@@ -17,7 +18,7 @@ const User = {
             .catch(() => {
                 return false;
             });
-    },
+    }
 
     PhoneNumberValidation(PhoneNumber) {
         const axios = require('axios');
@@ -32,16 +33,22 @@ const User = {
     }
 }
 
-let users = [];
-
-
+let users = [
+    //new User(1,"dassy","0548467857","dassydayan@gmail.com","7-12-2002"),
+    { id: '0', name: 'aa', email: '1@gmail.com', phoneNumber: '0556781234' ,biryhDate:'06/21/23'}
+];
 
 function get() {
     return users;
 }
 
-function create(user) {
-    const newUser = user;
+// function create(user) {
+//     const newUser = user;
+//     users.push(newUser);
+// }
+
+function create(name, email, phone, birthDate) {
+    const newUser = new User(users.length,name,email,phone,birthDate);
     users.push(newUser);
 }
 
@@ -59,10 +66,12 @@ function getUserById(id) {
     return users[index];
 }
 
-module.exports = {
+const userModel= {
     get,
     create,
     update,
     deleteUser,
     getUserById,
+    User
 };
+export default userModel;
