@@ -1,6 +1,6 @@
 
 let users = [
-    { id: '0', name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
+    { id: 0, name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
 ];
 
 function ValidEmail(email) {
@@ -35,13 +35,19 @@ function create(name, email, phone, birthDate) {
     users.push({id,name,email,phone,birthDate});
 }
 
-function update(id, user) {
+function update(id, name,email,phone,birthDate) {
     const index = users.findIndex(user => user.id == id);
-    users[index] = user;
+    const _id=parseInt(id);
+    if(id>=0 && id<users.length)
+        users[index] = {_id, name,email,phone,birthDate};
 }
 
 function deleteUser(id) {
-    users = users.filter(user => user.id != id)
+    /*convert id from object to number*/
+    const str = JSON.stringify(id);
+    const numStr = str.replace(/\D/g, ''); // Remove non-numeric characters
+    const _id = parseInt(numStr);
+    users = users.filter(user => user.id != _id);
 }
 
 function getUserById(id) {
