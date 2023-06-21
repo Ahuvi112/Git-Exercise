@@ -1,8 +1,8 @@
-
+import {Get} from '../Models/User.model.js'
 const UsersController = {
 
     getUsers:  (req, res) => {
-        let users=userMoodel.Get();
+        let users=Get();
         res.json(users);
     },
 
@@ -19,7 +19,6 @@ const UsersController = {
 
     addUser:  (req, res) => {
         const { name, email, phone } = req.body;
-
         try {
             const newUser = UserModel.Add({ name, email, phone });
             res.json(newUser);
@@ -46,7 +45,7 @@ const UsersController = {
     catch (e) {
         res.status(404).json({ message: e.message });
     }
-}
+    }
 }
        
 
