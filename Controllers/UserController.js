@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // import userMoodel from "../Models/User.model.js";
 
 const UsersController = {
@@ -20,29 +19,6 @@ const UsersController = {
     },
 
     addUser:  (req, res) => {
-    
-    },
-
-    deleteUser: async (req, res) => {
-        
-    },
-
-    updateUser: async (req, res) => {
-       
-=======
-import UserModel from "../Models/Users.model.js";
-
-const UsersController = {
-
-    getUsers: (req, res) => {
-
-    },
-
-    getById: (req, res) => {
-
-    },
-
-    addUser: (req, res) => {
         const { name, email, phone } = req.body;
 
         try {
@@ -64,16 +40,15 @@ const UsersController = {
         }
     },
 
-    updateUser: async (req, res) => {
-        try {
-            const { id, user } = req.body;
-            UserModel.Update(id, user);
-        }
-        catch (e) {
-            res.status(404).json({ message: e.message });
-        }
->>>>>>> 5234cf562a3be94b4bc3d26cddf3d4434353e21e
+    updateUser: async (req, res) => { try {
+        const { id, user } = req.body;
+        UserModel.Update(id, user);
+    }
+    catch (e) {
+        res.status(404).json({ message: e.message });
     }
 }
+}
+       
 
 export default UsersController;
