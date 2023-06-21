@@ -1,15 +1,20 @@
-import {getUserById,get,update,deleteUser,User,create} from '../Models/User.model.js'
+const userModel = require('../Models/User.model.js');
 const UsersController = {
 
-    getUsers:  (req, res) => {
-        let users=get();
-        res.json(users);
+    getUsers: async (req, res) => {
+        try {
+            let users = await userModel.get();
+            res.json(users);
+        } catch (error) {
+            res.status(404).json({ message: e.message });
+        }
+
     },
 
-    getById: (req, res) => {
+    getById: async (req, res) => {
         try {
             const { id } = req.body;
-            let user = UserModel.getById(id);
+            let user = await userModel.getUserById(id);
             res.json(user);
         }
         catch (e) {
@@ -17,11 +22,10 @@ const UsersController = {
         }
     },
 
-
-    addUser: (req, res) => {
-        const { name, email, phone } = req.body;
+    addUser: async (req, res) => {
+        const { name, email, phone, dateBirth } = req.body;
         try {
-            const newUser = create({ name, email, phone });
+            const newUser = await userModel.create({ name, email, phone, dateBirth });
             res.json(newUser);
         }
         catch (e) {
@@ -32,7 +36,7 @@ const UsersController = {
     deleteUser: async (req, res) => {
         try {
             const id = req.body;
-            deleteUser(id);
+            await userModel.deleteUser(id);
         }
         catch (e) {
             res.status(404).json({ message: e.message });
@@ -42,7 +46,7 @@ const UsersController = {
     updateUser: async (req, res) => {
         try {
             const { id, user } = req.body;
-            UserModel.Update(id, user);
+            await userModel.update(id, user);
         }
         catch (e) {
             res.status(404).json({ message: e.message });
