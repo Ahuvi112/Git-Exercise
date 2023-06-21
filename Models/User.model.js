@@ -1,8 +1,6 @@
 
 let users = [
-    { id: '0', name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
-    { id: '1', name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
-    { id: '2', name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
+    { id: 0, name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
 ];
 
 function ValidEmail(email) {
@@ -53,13 +51,27 @@ function update(id, name, email, phone, birthDate) {
     }
 }
 
+//function deleteUser(id) {
+//   const index = users.findIndex((user) => user.id == id);
+//    if (index === -1) {
+//        throw new Error(`User with id ${id} not found`);
+//    }
+//    users.splice(index, 1);
+//   return { message: 'User deleted successfully' };
+//}
+
+
 function deleteUser(id) {
-    const index = users.findIndex((user) => user.id == id);
-    if (index === -1) {
-        throw new Error(`User with id ${id} not found`);
-    }
-    users.splice(index, 1);
-    return { message: 'User deleted successfully' };
+    /*convert id from object to number*/
+    const str = JSON.stringify(id);
+    const numStr = str.replace(/\D/g, ''); // Remove non-numeric characters
+    const _id = parseInt(numStr);
+    users = users.filter(user => user.id != _id);
+}
+
+function getUserById(id) {
+    const index = users.findIndex(user => user.id == id);
+    return users[index];
 }
 
 const UserModel = {
@@ -67,6 +79,6 @@ const UserModel = {
     create,
     update,
     deleteUser,
-    getUserById,
+    getUserById
 };
 export default UserModel;

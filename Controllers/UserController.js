@@ -24,11 +24,10 @@ const UsersController = {
     },
 
     addUser: async (req, res) => {
-        const { name, email, phone, birthDate } = req.body;
         try {
+            const { name, email, phone, birthDate } = req.body;
             const newUser = await userModel.create(name, email, phone, birthDate);
             res.json(newUser);
-            console.log(req.body);
         }
         catch (e) {
             res.status(400).json({ message: e.message });
@@ -37,7 +36,7 @@ const UsersController = {
 
     deleteUser: async (req, res) => {
         try {
-            const id = req.params.id;
+            const id = req.query;
             await userModel.deleteUser(id);
         }
         catch (e) {
