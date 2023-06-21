@@ -1,4 +1,3 @@
-// import userMoodel from "../Models/User.model.js";
 
 const UsersController = {
 
@@ -7,8 +6,8 @@ const UsersController = {
         res.json(users);
     },
 
-    getById: (req,res)=>{
-        try{
+    getById: (req, res) => {
+        try {
             const { id } = req.body;
             let user =  UserModel.getById(id);
             res.json(user);
