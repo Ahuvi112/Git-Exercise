@@ -25,8 +25,8 @@ const UsersController = {
 
     addUser: async (req, res) => {
         try {
-            const { name, email, phone, birthDate } = req.body;
-            const newUser = await userModel.create(name, email, phone, birthDate);
+            const { id, name, email, phone, birthDate } = req.body;
+            const newUser = await userModel.create(id, name, email, phone, birthDate);
             res.json(newUser);
         }
         catch (e) {
