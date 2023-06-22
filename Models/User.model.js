@@ -1,3 +1,4 @@
+import hebrewCal from "../Servises/HebrewCal";
 
 class User{
     constructor(id, name, email, phone, birthDate){
@@ -15,22 +16,19 @@ let users =[
 ];
 
 const get =()=> {
-    const hebcalusers=[]
-    users.map(async u=>{
-        const date = u.birthDate;
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`;
-        const hebDate=await HebCal(formattedDate);
-        console.log("hebDate",hebDate);
-        hebcalusers.push(hebDate);
-    });
-    console.log("hebcalusers",hebcalusers);
+    // const hebcalusers=[]
+    // users.map(async u=>{
+    //     const formattedDate = hebrewCal.ConvertDateFormat(u.birthDate);
+    //     const hebDate=await hebrewCal.HebCal(formattedDate);
+    //     console.log("hebDate",hebDate);
+    //     hebcalusers.push(hebDate);
+    // });
+    // console.log("hebcalusers",hebcalusers);
     return users;
 }
 
 function getUserById(id) {
+    //need to throw 404 if user not found!
     const user = users.find((user) => user.id == id);
     return user;
 }
