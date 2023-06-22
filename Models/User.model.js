@@ -11,16 +11,39 @@ class User{
 }
 
 let users =[
-    new User(1,"racheli","racheli@gmauk.com","0548465284",new Date('2022-7-8'))
+    new User(0,"racheli","racheli@gmauk.com","0548465284",new Date('2023-6-22')),
+    new User(1,"shira","shira@gmauk.com","089547855",new Date('2002-12-7'))
 ];
 
+const HebCal=async(gregorianDate) =>{
+    try{
+        const resp = await  axios.get(`https://www.hebcal.com/converter?cfg=json&date=${gregorianDate}&g2h=1&strict=1`);
+        return resp.data.hebrew;
+    }
+    catch(err){
+        console.error(err);
+    }
+}
+
 function UserValidation(user){
-    if(user.id<0 ||user.name==null ||user.phone==null||user.email==null)
+    if(user.id==null ||user.name==null ||user.phone==null||user.email==null||user.birthDate==null)
         return false;
     return true;
 }
 
-function get() {
+const get =()=> {
+    const hebcalusers=[]
+    users.map(async u=>{
+        const date = u.birthDate;
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        const hebDate=await HebCal(formattedDate);
+        console.log("hebDate",hebDate);
+        hebcalusers.push(hebDate);
+    });
+    console.log("hebcalusers",hebcalusers);
     return users;
 }
 
