@@ -1,5 +1,5 @@
-import userModel from '../Models/User.model.js';
-
+//import userModel from '../Models/User.model.js';
+const userModel = require('../Models/User.model.js');
 const UsersController = {
 
     getUsers: async (req, res) => {
@@ -36,7 +36,7 @@ const UsersController = {
 
     deleteUser: async (req, res) => {
         try {
-            const id = req.query;
+            const { id } = req.params;
             await userModel.deleteUser(id);
         }
         catch (e) {
@@ -55,4 +55,5 @@ const UsersController = {
         }
     }
 }
-export default UsersController;
+module.exports = UsersController;
+//export default UsersController;
