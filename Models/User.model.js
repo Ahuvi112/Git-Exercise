@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { response } from 'express';
 
 class User{
     constructor(id, name, email, phone, birthDate){
@@ -11,39 +12,43 @@ class User{
 }
 
 let users =[
-    new User(1,"racheli","racheli@gmauk.com","0548465284",new Date('2022-7-8'))
-    // { id: 0, name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
+    new User(0,"racheli","racheli@gmauk.com","0548465284",new Date('2023-6-22')),
+    new User(1,"shira","shira@gmauk.com","089547855",new Date('2002-12-7'))
 ];
 
-// async function ValidEmail(email) {
-//     return axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=2e17dc1705204211a9f56d23286e45c9&email=${email}`)
-//         .then((response) => {
-//             return response.data.is_valid_format.value;
-//         })
-//         .catch(() => {
-//             return false;
-//         });
-// }
 
-// async function PhoneNumberValidation(PhoneNumber) {
-//     return axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=76ce3eacb8ff4fd79e87075ba8322cee&phone=+972${PhoneNumber}`)
-//         .then((response) => {
-//             return response.data.valid;
-//         })
-//         .catch(() => {
-//             return false;
-//         });
-// }
 
-//-------------------------------------------------------------------------
+
+const HebCal=async(gregorianDate) =>{
+    try{
+        const resp = await  axios.get(`https://www.hebcal.com/converter?cfg=json&date=${gregorianDate}&g2h=1&strict=1`);
+        // console.log(resp.data.hebrew);
+        return resp.data.hebrew;
+    }
+    catch(err){
+        console.error(err);
+    }
+}
+
 function UserValidation(user){
-    if(user.id<0 ||user.name==null ||user.phone==null||user.email==null)
+    if(user.id==null ||user.name==null ||user.phone==null||user.email==null||user.birthDate==null)
         return false;
     return true;
 }
-//-------------------------------------------------------------------------
 
-function get() {
+const get =()=> {
+    const hebcalusers=[]
+    users.map(async u=>{
+        const date = u.birthDate;
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        const hebDate=await HebCal(formattedDate);
+        console.log("hebDate",hebDate);
+        hebcalusers.push(hebDate);
+    });
+    console.log("hebcalusers",hebcalusers);
     return users;
 }
 
@@ -55,13 +60,9 @@ function getUserById(id) {
 async function create(id, name, email, phone, birthDate) {
     const emailValid = await ValidEmail(email);
     const phoneValid = await PhoneNumberValidation(phone);
-    console.log("emailValid", emailValid, "phoneValid", phoneValid);
     if (emailValid && phoneValid) {
-        console.log("did it*******************************************");
         users.push({ id, name, email, phone, birthDate });
-    } else {
-        console.log('Invalid email or phone number');
-    }
+    } 
 }
 
 function update(id, name, email, phone, birthDate) {
