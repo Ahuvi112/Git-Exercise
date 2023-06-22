@@ -9,13 +9,11 @@ const UsersController = {
         } catch (e) {
             res.status(404).json({ message: e.message });
         }
-
     },
 
     getById: async (req, res) => {
         try {
             const { id } = req.query;
-            console.log(id); // Add this line
             const user = await userModel.getUserById(id);
             res.json(user);
         } catch (e) {

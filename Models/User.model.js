@@ -1,42 +1,53 @@
 import axios from 'axios';
 
-let users = [
-    { id: 0, name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
+class User{
+    constructor(id, name, email, phone, birthDate){
+        this.id=id;
+        this.name=name;
+        this.email=email;
+        this.phone=phone;
+        this.birthDate=birthDate;
+    }
+}
+
+let users =[
+    new User(1,"racheli","racheli@gmauk.com","0548465284",new Date('2022-7-8'))
+    // { id: 0, name: 'aa', email: '1@gmail.com', phone: '0556781234', birthDate: '06/21/23' },
 ];
 
-async function ValidEmail(email) {
-    axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=2e17dc1705204211a9f56d23286e45c9&email=${email}`)
-        .then((response) => {
-            return response.data.is_valid_format.value;
-        })
-        .catch(() => {
-            return false;
-        });
+// async function ValidEmail(email) {
+//     return axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=2e17dc1705204211a9f56d23286e45c9&email=${email}`)
+//         .then((response) => {
+//             return response.data.is_valid_format.value;
+//         })
+//         .catch(() => {
+//             return false;
+//         });
+// }
 
-    //try {
-    //const response = axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=2e17dc1705204211a9f56d23286e45c9&email=${email}`)
-    //return response.data.is_valid_format.value;
-    //}catch (error) {
-    // return false;
-    //}
-}
+// async function PhoneNumberValidation(PhoneNumber) {
+//     return axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=76ce3eacb8ff4fd79e87075ba8322cee&phone=+972${PhoneNumber}`)
+//         .then((response) => {
+//             return response.data.valid;
+//         })
+//         .catch(() => {
+//             return false;
+//         });
+// }
 
-async function PhoneNumberValidation(PhoneNumber) {
-    axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=76ce3eacb8ff4fd79e87075ba8322cee&phone=+972${PhoneNumber}`)
-        .then((response) => {
-            return response.data.valid;
-        })
-        .catch(() => {
-            return false;
-        });
+//-------------------------------------------------------------------------
+function UserValidation(user){
+    if(user.id<0 ||user.name==null ||user.phone==null||user.email==null)
+        return false;
+    return true;
 }
+//-------------------------------------------------------------------------
 
 function get() {
     return users;
 }
 
 function getUserById(id) {
-    console.log(id);
     const user = users.find((user) => user.id == id);
     return user;
 }
@@ -62,16 +73,6 @@ function update(id, name, email, phone, birthDate) {
         user.birthDate = birthDate || user.birthDate;
     }
 }
-
-//function deleteUser(id) {
-//   const index = users.findIndex((user) => user.id == id);
-//    if (index === -1) {
-//        throw new Error(`User with id ${id} not found`);
-//    }
-//    users.splice(index, 1);
-//   return { message: 'User deleted successfully' };
-//}
-
 
 function deleteUser(id) {
     /*convert id from object to number*/
