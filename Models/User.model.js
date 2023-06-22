@@ -1,5 +1,3 @@
-import axios from 'axios'
-import { response } from 'express';
 
 class User{
     constructor(id, name, email, phone, birthDate){
@@ -15,26 +13,6 @@ let users =[
     new User(0,"racheli","racheli@gmauk.com","0548465284",new Date('2023-6-22')),
     new User(1,"shira","shira@gmauk.com","089547855",new Date('2002-12-7'))
 ];
-
-
-
-
-const HebCal=async(gregorianDate) =>{
-    try{
-        const resp = await  axios.get(`https://www.hebcal.com/converter?cfg=json&date=${gregorianDate}&g2h=1&strict=1`);
-        // console.log(resp.data.hebrew);
-        return resp.data.hebrew;
-    }
-    catch(err){
-        console.error(err);
-    }
-}
-
-function UserValidation(user){
-    if(user.id==null ||user.name==null ||user.phone==null||user.email==null||user.birthDate==null)
-        return false;
-    return true;
-}
 
 const get =()=> {
     const hebcalusers=[]
