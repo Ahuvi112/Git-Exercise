@@ -1,4 +1,3 @@
-//import userModel from '../Models/User.model.js';
 const userModel = require('../Models/User.model.js');
 const UsersController = {
 
@@ -54,4 +53,3 @@ const UsersController = {
     }
 }
 module.exports = UsersController;
-//export default UsersController;

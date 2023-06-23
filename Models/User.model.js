@@ -1,5 +1,5 @@
 const validationFunction = require('../Validation/validation.js');
-import hebrewCal from "../Servises/HebrewCal";
+const hebrewCal =require("../Servises/HebrewCal") ;
 
 class User{
     constructor(id, name, email, phone, birthDate){

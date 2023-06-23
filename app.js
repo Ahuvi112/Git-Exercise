@@ -1,10 +1,5 @@
-//import express from 'express';
-//import bodyParser from 'body-parser';
-
-//import UserRouter from './Routers/UserRouter.js';
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const UserRouter = require('./Routers/UserRouter.js');
 
 const app=express();

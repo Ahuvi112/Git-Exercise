@@ -18,8 +18,7 @@ function ConvertDateFormat(date){
     return formattedDate;
 };
 
-const hebrewCal={
+module.exports={
     HebCal,
     ConvertDateFormat
-};
-export default hebrewCal;
+}
