@@ -33,7 +33,7 @@ const UsersController = {
 
     deleteUser: async (req, res) => {
         try {
-            const { id } = req.params;
+            const { id } = req.query;
             await userModel.deleteUser(id);
         }
         catch (e) {
